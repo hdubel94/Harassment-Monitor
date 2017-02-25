@@ -1,3 +1,5 @@
+import main
+
 def nn(phrase):
     return 1;
 
@@ -41,7 +43,7 @@ def get_welcome_response():
                     "if I suspect harassment."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
-    reprompt_text = "Welcome reprompt."
+    reprompt_text = "" # no reprompt
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -61,12 +63,13 @@ def analyze_speech(intent, session):
     should_end_session = False
 
     phrase = intent['slots']['Speech']['value']
-    harassment = nn(phrase)
+    #harassment = nn(phrase)
+    harassment = main.is_harassment(phrase)
     if harassment == 1:
-        speech_output = "Harassment detected."
+        speech_output = "Harassment detected. I heard " + phrase
     else:
-        speech_output = "Sounds good."
-    reprompt_text = "Reprompt."
+        speech_output = "" # say nothing
+    reprompt_text = "" # no reprompt
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -115,7 +118,7 @@ def on_session_ended(session_ended_request, session):
     session_attributes = {}
     should_end_session = True
     speech_output = "Ending session."
-    reprompt_text = "Session ended reprompt."
+    reprompt_text = "" # no reprompt
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
