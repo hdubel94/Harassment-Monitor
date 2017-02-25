@@ -24,6 +24,7 @@ In a well trained network, the resulting value of network_output should be close
 
 Here is some example code for creating a neural network and training it to act as a XOR gate:
 
+`code(
 import network
 import random
 
@@ -42,6 +43,7 @@ print(my_net.eval([0, 0]))
 print(my_net.eval([0, 1]))
 print(my_net.eval([1, 0]))
 print(my_net.eval([1, 1]))
+)`
 
 On my machine, running this code generated the following output:
 
