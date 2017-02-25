@@ -68,7 +68,7 @@ def analyze_speech(intent, session):
     if harassment == 1:
         speech_output = "Harassment detected. I heard " + phrase
     else:
-        speech_output = "" # say nothing
+        speech_output = "Sounds good. I heard " + phrase
     reprompt_text = "" # no reprompt
 
     return build_response(session_attributes, build_speechlet_response(
