@@ -1,20 +1,13 @@
 {
   "intents": [
     {
-      "intent": "GetHoroscope",
+      "intent": "MonitorHarassmentIntent",
       "slots": [
         {
-          "name": "Sign",
-          "type": "LIST_OF_SIGNS"
-        },
-        {
-          "name": "Date",
-          "type": "AMAZON.DATE"
+          "name": "Speech",
+          "type": "string"
         }
       ]
-    },
-    {
-      "intent": "GetLuckyNumbers"
     }
   ]
 }
