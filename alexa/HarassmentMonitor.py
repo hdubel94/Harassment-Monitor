@@ -71,6 +71,12 @@ def analyze_speech(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+def on_session_started(session_started_request, session):
+    """ Called when the session starts """
+
+    #print("on_session_started requestId=" + session_started_request['requestId']
+    #      + ", sessionId=" + session['sessionId'])
+
 def on_launch(launch_request, session):
     """ Called when the user launches the skill without specifying what they
     want
@@ -97,6 +103,15 @@ def on_intent(intent_request, session):
     else:
         raise ValueError("Invalid intent")
 
+def on_session_ended(session_ended_request, session):
+    """ Called when the user ends the session.
+
+    Is not called when the skill returns should_end_session=true
+    """
+    #print("on_session_ended requestId=" + session_ended_request['requestId'] +
+    #      ", sessionId=" + session['sessionId'])
+    # add cleanup logic here
+
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
@@ -111,9 +126,9 @@ def lambda_handler(event, context):
     prevent someone else from configuring a skill that sends requests to this
     function.
     """
-    # if (event['session']['application']['applicationId'] !=
-    #         "amzn1.echo-sdk-ams.app.[unique-value-here]"):
-    #     raise ValueError("Invalid Application ID")
+    if (event['session']['application']['applicationId'] !=
+            "amzn1.ask.skill.867bfa76-8f3f-4289-8741-efda1f5fe070"):
+        raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
         on_session_started({'requestId': event['request']['requestId']},

@@ -5,7 +5,7 @@
       "slots": [
         {
           "name": "Speech",
-          "type": "string"
+          "type": "TRIGGER_WORDS"
         }
       ]
     }
