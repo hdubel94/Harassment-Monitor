@@ -1,10 +1,1 @@
-GetHoroscope what is the horoscope for {Sign}
-GetHoroscope what will the horoscope for {Sign} be on {Date}
-GetHoroscope get me my horoscope
-GetHoroscope {Sign}
-...
-GetLuckyNumbers what are my lucky numbers
-GetLuckyNumbers tell me my lucky numbers
-...
-MatchSign do {FirstSign} and {SecondSign} get along
-MatchSign what is the relationship between {FirstSign} and {SecondSign}
+MonitorHarassmentIntent {Speech}
