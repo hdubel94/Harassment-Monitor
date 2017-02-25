@@ -2,7 +2,9 @@ This file will serve as basic documentation for network.py.
 
 Importing the file (ensure that you are in the same directory as network.py):
 
+```python
 import network
+```
 
 Creating a three layer network with two input neurons, three hidden layer neurons, and one output layer neuron:
 
