@@ -10,6 +10,7 @@ net.layers = network_metadata.layers
 net.biases = network_metadata.biases
 net.weights = network_metadata.weights
 
+# Main function to check for harassment
 def is_harassment(phrase):
 	current_hash = input_handler.phrase_to_hash(phrase)
 	network_output = net.eval(current_hash)

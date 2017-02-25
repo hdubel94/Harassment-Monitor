@@ -1,3 +1,4 @@
+# This needs to be carefully designed, returns zeros at the moment
 def phrase_to_hash(phrase):
 	total = 0
 	char_count = {}
