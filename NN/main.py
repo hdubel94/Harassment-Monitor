@@ -2,9 +2,9 @@ import input_handler
 import network
 import network_metadata
 
-network_structure = [132, 25, 1]
+network_structure = [155, 25, 1]
 net = network.Network(network_structure)
-net_tolerance = 0.5
+net_tolerance = 0.6
 
 net.layers = network_metadata.layers
 net.biases = network_metadata.biases
