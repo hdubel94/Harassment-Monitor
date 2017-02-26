@@ -28,6 +28,7 @@ Another challenge was training the network. Many words can have both a negative 
 
 ## Accomplishments that we're proud of
 This is the team's first implementation of the Alexa Voice Service and utilizing some of the features AWS has to offer.
+Successfully designed and created a neural network to classify harassment speech despite the inherent difficulties of extracting meaning from text.
 
 ## What we learned
 Gained further familiarity with Python. Learned the basics of an Alexa Skill and how to debug it. How to implement AWS features into our project.
