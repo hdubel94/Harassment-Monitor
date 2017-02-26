@@ -57,12 +57,17 @@ def handle_session_end_request():
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
 
-def analyze_speech(intent, session):
+def analyze_speech(intent_request, session):
+    intent = intent_request['intent']
     card_title = intent['name']
     session_attributes = {}
     should_end_session = False
 
     phrase = intent['slots']['Speech']['value']
+
+    #if phrase == "exit":
+    #    return on_session_ended(intent_request, session)
+
     #harassment = nn(phrase)
     harassment = main.is_harassment(phrase)
     if harassment == 1:
@@ -98,7 +103,7 @@ def on_intent(intent_request, session):
 
     # Dispatch to your skill's intent handlers
     if intent_name == "MonitorHarassmentIntent":
-        return analyze_speech(intent, session)
+        return analyze_speech(intent_request, session)
     elif intent_name == "AMAZON.HelpIntent":
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
@@ -114,13 +119,14 @@ def on_session_ended(session_ended_request, session):
     #print("on_session_ended requestId=" + session_ended_request['requestId'] +
     #      ", sessionId=" + session['sessionId'])
     # add cleanup logic here
-    card_title = intent['name']
-    session_attributes = {}
-    should_end_session = True
-    speech_output = "Ending session."
-    reprompt_text = "Ending reprompt." # no reprompt
-    return build_response(session_attributes, build_speechlet_response(
-        card_title, speech_output, reprompt_text, should_end_session))
+    #card_title = session_ended_request['intent']['name']
+    #session_attributes = {}
+    #should_end_session = True
+    #speech_output = "Ending session."
+    #reprompt_text = "Ending reprompt." # no reprompt
+    #return build_response(session_attributes, build_speechlet_response(
+    #    card_title, speech_output, reprompt_text, should_end_session))
+    #return handle_session_end_request()
 
 # --------------- Main handler ------------------
 
@@ -134,7 +140,7 @@ def lambda_handler(event, context):
     """
     Uncomment this if statement and populate with your skill's application ID to
     prevent someone else from configuring a skill that sends requests to this
-    function.
+    function.  on_session_ended(event['request'], event['session'])
     """
     if (event['session']['application']['applicationId'] !=
             "amzn1.ask.skill.867bfa76-8f3f-4289-8741-efda1f5fe070"):
