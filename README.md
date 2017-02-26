@@ -34,3 +34,6 @@ Gained further familiarity with Python. Learned the basics of an Alexa Skill and
 
 ## What's next for Harassment Monitor
 The neural network will be expanded upon and trained. Ideally, it could be utilized through other voice and text recognition scenarios and help fight harassment across multiple mediums.
+
+
+*The Harassment Monitor team absolutely repudiates all form of harassment. Our goal is to raise awareness and stop potential harassment in any setting. Any negative language or phrases used or found in the source code is purely for classifying or training data purposes. The Harassment Monitor team does not approve of any use of such negative or harassing language in any form.*
