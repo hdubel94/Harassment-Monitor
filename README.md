@@ -10,6 +10,10 @@ In a rapidly evolving digital world, it can become easy to forget that there is 
 ## What it does
 Our hack uses a neural network which is trained to identify between positive and negative words. To help demonstrate the network, it was implemented onto an Amazon Echo. Upon using the Echo's wake word and asking for "Harassment Monitor", the Echo will listen silently in the background for any words and forward them into the neural network. If the network deems that the conversation can be considered harassment, the user is notified by Alexa and an e-mail and an SMS text message is sent to the supplied contact. We hope that by catching harassment and reporting it, the spread of it can be prevented for the greater good of society.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hdubel94/Hack2017/master/images/OldGuy.png" alt="Hack Harassment Monitor Message" width="250px"/>
+</p>
+
 ## How we built it
 We used python to implement our entire project. The neural network is designed in a separate file so that it can be used in myriad of applications. The HarassmentMonitor.py script is what AWS Lambda utilizes to collect and send information to the network and send any messages should they be needed.
 
