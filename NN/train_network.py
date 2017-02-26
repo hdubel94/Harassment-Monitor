@@ -4,9 +4,9 @@ import network_metadata
 import random
 import training_data
 
-network_structure = [100, 50, 1]
+network_structure = [320, 40, 1]
 net = network.Network(network_structure)
-step_size = 0.3
+step_size = 3.0
 
 net.layers = network_metadata.layers
 net.biases = network_metadata.biases

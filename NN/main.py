@@ -2,7 +2,7 @@ import input_handler
 import network
 import network_metadata
 
-network_structure = [100, 50, 1]
+network_structure = [320, 40, 1]
 net = network.Network(network_structure)
 net_tolerance = 0.5
 

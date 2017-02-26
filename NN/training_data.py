@@ -1,2 +1,2 @@
-harassment = ['I am harassing you', 'I am still harassing you']
-not_harassment = ['not harassment', 'also not harassment']
+harassment = ['test1', 'test2']
+not_harassment = ['test3', 'test4']
