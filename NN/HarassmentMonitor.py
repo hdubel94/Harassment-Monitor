@@ -1,4 +1,9 @@
+import boto3
 import main
+from AWS import subscription
+
+sns = boto3.resource('sns', region_name = 'us-east-1')
+topic = sns.Topic(subscription)
 
 def nn(phrase):
     return 1;
@@ -23,6 +28,13 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         'shouldEndSession': should_end_session
     }
 
+def send_alert(alert):
+    """
+    Triggers an SNS alarm to send to the topic ARN.
+    """
+    subject = 'Harassment Detected!'
+    message = '{}'.format(alert)
+    sns_message = topic.publish(Message = message, Subject = subject)
 
 def build_response(session_attributes, speechlet_response):
     return {
@@ -72,6 +84,7 @@ def analyze_speech(intent_request, session):
     harassment = main.is_harassment(phrase)
     if harassment == 1:
         speech_output = "Harassment detected. I heard " + phrase
+        send_alert(speech_output)
     else:
         speech_output = "Sounds good. I heard " + phrase
     reprompt_text = "Reprompt" # no reprompt
