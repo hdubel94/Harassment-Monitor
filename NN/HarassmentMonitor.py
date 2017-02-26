@@ -54,7 +54,7 @@ def get_welcome_response():
                     "if I suspect harassment."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
-    reprompt_text = "" # no reprompt text
+    reprompt_text = " " # refresh timer without prompting
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -82,7 +82,7 @@ def analyze_speech(intent_request, session):
         send_alert(speech_output)
     else:
         speech_output = "" # say nothing if positive phrase
-    reprompt_text = "" # no reprompt
+    reprompt_text = " " # refresh timer without prompting
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
