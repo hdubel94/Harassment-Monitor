@@ -1,12 +1,10 @@
 import boto3
 import main
+import datetime
 from AWS import subscription
 
 sns = boto3.resource('sns', region_name = 'us-east-1')
 topic = sns.Topic(subscription)
-
-def nn(phrase):
-    return 1;
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
     return {
@@ -33,7 +31,8 @@ def send_alert(alert):
     Triggers an SNS alarm to send to the topic ARN.
     """
     subject = 'Harassment Detected!'
-    message = '{}'.format(alert)
+    alert_time = datetime.datetime.today()
+    message = 'Potential harassment detected on {} with message "{}"'.format(alert_time, alert)
     sns_message = topic.publish(Message = message, Subject = subject)
 
 def build_response(session_attributes, speechlet_response):
@@ -55,7 +54,7 @@ def get_welcome_response():
                     "if I suspect harassment."
     # If the user either does not reply to the welcome message or says something
     # that is not understood, they will be prompted again with this text.
-    reprompt_text = "Welcome reprompt"
+    reprompt_text = "" # no reprompt text
     should_end_session = False
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -75,19 +74,15 @@ def analyze_speech(intent_request, session):
     session_attributes = {}
     should_end_session = False
 
-    phrase = intent['slots']['Speech']['value']
+    phrase = intent['slots']['Speech']['value'] # get the phrase from the intent
 
-    #if phrase == "exit":
-    #    return on_session_ended(intent_request, session)
-
-    #harassment = nn(phrase)
     harassment = main.is_harassment(phrase)
     if harassment == 1:
         speech_output = "Harassment detected. I heard " + phrase
         send_alert(speech_output)
     else:
-        speech_output = "Sounds good. I heard " + phrase
-    reprompt_text = "Reprompt" # no reprompt
+        speech_output = "" # say nothing if positive phrase
+    reprompt_text = "" # no reprompt
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -131,15 +126,6 @@ def on_session_ended(session_ended_request, session):
     """
     #print("on_session_ended requestId=" + session_ended_request['requestId'] +
     #      ", sessionId=" + session['sessionId'])
-    # add cleanup logic here
-    #card_title = session_ended_request['intent']['name']
-    #session_attributes = {}
-    #should_end_session = True
-    #speech_output = "Ending session."
-    #reprompt_text = "Ending reprompt." # no reprompt
-    #return build_response(session_attributes, build_speechlet_response(
-    #    card_title, speech_output, reprompt_text, should_end_session))
-    #return handle_session_end_request()
 
 # --------------- Main handler ------------------
 
