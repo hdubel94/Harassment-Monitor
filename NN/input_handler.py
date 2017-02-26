@@ -1,40 +1,14 @@
-# Integer modulated and converted to binary list
-def char_conversion(n):
-	n = n % 7
-	n = bin(n)[2:]
-	while len(n) < 3:
-		n = '0' + n
-	n = list(n)
-	n = [int(i) for i in n]
-	return n
+word_list = [	'bad', 'bitch', 'crap', 'crazy', 'creepy', 'damn', 'dick', 'fag', 'fool', 'freak', 'fuck', 'gross', 'hit', 'idiot', 'kill', 'lose', 'nerd', 'never', 'no', 'out', 'poor', 'puss', 'retard', 'sex', 'shit', 'shut', 'slut', 'smack', 'stupid', 'suck', 'tits', 'ugly', 'weird', 'whore', 'worst', 'wrong',
+				'and', 'about', 'almost', 'always', 'as', 'be', 'big', 'black', 'boy', 'could', 'day', 'doing', 'down', 'drink', 'early', 'face', 'feel', 'food', 'force', 'get', 'girl', 'give', 'gone', 'hello', 'high', 'hot', 'job', 'joke', 'know', 'late', 'left', 'little', 'long', 'low', 'man', 'men', 'mess', 'most', 'never', 'not', 'now', 'only', 'over', 'probably', 'say', 'short', 'should', 'soon', 'stick', 'straight', 'stuck', 'such', 'take', 'that', 'the', 'there', 'their', 'think', 'time', 'top', 'touch', 'up', 'want', 'way', 'what', 'when', 'where', 'which', 'why', 'with', 'woman', 'women', 'work', 'yeah', 'you',
+				'best', 'creative', 'cool', 'fair', 'fine', 'fun', 'good', 'great', 'happy', 'help', 'luck', 'nice', 'please', 'right', 'smart', 'strong', 'thank', 'welcome', 'well', 'win', 'yes']
 
-# Integer modulated and converted to binary list
-def mod_conversion(n):
-	n = n % 31
-	n = bin(n)[2:]
-	while len(n) < 5:
-		n = '0' + n
-	n = list(n)
-	n = [int(i) for i in n]
-	return n
-
-# This needs to be carefully designed, returns zeros at the moment
+# Keyword check for positive/negative words
 def phrase_to_hash(phrase):
+	phrase = phrase.lower()
 	current_hash = []
-	char_count = {}
-	primes = [2, 3, 5, 7, 11, 13, 17]
-	mod_count = {}
-	for i in range(32, 127):
-		char_count[i] = 0
-	for i in primes:
-		mod_count[i] = 0
-	for index, current_char in enumerate(phrase):
-		char_count[ord(current_char)] += 1
-		for i in primes:
-			if index % i == 0:
-				mod_count[i] += ord(current_char)
-	for i in range(32, 127):
-		current_hash += char_conversion(char_count[i])
-	for i in primes:
-		current_hash += mod_conversion(mod_count[i])
+	for current_word in word_list:
+		if current_word in phrase:
+			current_hash += [1]
+		else:
+			current_hash += [0]
 	return current_hash

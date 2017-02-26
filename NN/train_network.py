@@ -4,7 +4,7 @@ import network_metadata
 import random
 import training_data
 
-network_structure = [320, 40, 1]
+network_structure = [132, 25, 1]
 net = network.Network(network_structure)
 step_size = 3.0
 
