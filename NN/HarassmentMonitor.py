@@ -79,7 +79,7 @@ def analyze_speech(intent_request, session):
     harassment = main.is_harassment(phrase)
     if harassment == 1:
         speech_output = "Harassment detected. I heard " + phrase
-        send_alert(speech_output)
+        send_alert(phrase)
     else:
         speech_output = "" # say nothing if positive phrase
     reprompt_text = " " # refresh timer without prompting
